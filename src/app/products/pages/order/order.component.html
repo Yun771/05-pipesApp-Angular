@@ -1,0 +1,74 @@
+<p-panel header="Pipe personalizados" class="p-2">
+  <p>
+    Pipes Personalizados - creados por {{ 'nosotros' | toggleCase:isUpperCase }}
+  </p>
+</p-panel>
+
+
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <p-button
+      label="ToggleCase"
+      icon="pi pi-arrow-right-arrow-left"
+      class="mr-2"
+      (click)="toggleUpperCase()"
+    >
+    </p-button>
+
+  </div>
+
+  <div class="p-toolbar-group-end">
+    <p-button
+      class="mr-1"
+      label="Por nombre"
+      icon="pi pi-sort"
+      styleClass="p-button-success"
+      (click)="changeOrder('name')"
+    >
+    </p-button>
+
+    <p-button
+      class="mr-1"
+      label="Por Volar"
+      icon="pi pi-sort"
+      styleClass="p-button-danger"
+      (click)="changeOrder('canFly')"
+    >
+    </p-button>
+
+    <p-button
+      class="mr-1"
+      label="Por Color"
+      icon="pi pi-sort"
+      styleClass="p-button-help"
+      (click)="changeOrder('color')"
+    >
+    </p-button>
+  </div>
+
+</p-toolbar>
+
+<div class="grid">
+  <div class="col mt-2">
+
+    <p-panel header="Heroes">
+      <p-table [value]="heroes | sortBy:orderBy" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nombre</th>
+            <th>Vuela</th>
+            <th>Color</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-hereo>
+          <tr>
+            <td>{{ hereo.name }}</td>
+            <td>{{ hereo.canFly | canFly }}</td>
+            <td>{{ hereo.color }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+
+  </div>
+</div>
